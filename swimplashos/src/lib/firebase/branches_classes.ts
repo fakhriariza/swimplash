@@ -52,16 +52,18 @@ export const getClasses = async (branchId?: string) => {
 
 export const createClass = async (classData: Omit<Class, "id">) => {
   const classesRef = collection(db, "tenants", TENANT_ID, "classes");
-  return await addDoc(classesRef, {
+  const docRef = await addDoc(classesRef, {
     ...classData,
     studentIds: classData.studentIds || []
   });
+  return docRef.id;
 };
 
 export const createBranch = async (branchData: Omit<Branch, "id">) => {
   const branchesRef = collection(db, "tenants", TENANT_ID, "branches");
-  return await addDoc(branchesRef, {
+  const docRef = await addDoc(branchesRef, {
     ...branchData,
     isActive: true
   });
+  return docRef.id;
 };

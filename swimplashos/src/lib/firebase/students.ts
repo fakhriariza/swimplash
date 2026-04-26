@@ -67,7 +67,7 @@ export const createStudent = async (studentData: Omit<Student, "id" | "createdAt
     templates.welcome(studentData.name, packageName, studentData.activePackage.totalSessions)
   );
 
-  return docRef;
+  return docRef.id;
 };
 
 export const getStudentById = async (studentId: string) => {
